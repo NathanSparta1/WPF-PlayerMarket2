@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PlayerMarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="AgentId" />
+    </Key>
+    <Property Name="AgentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Rating" Type="Int32" />
+    <NavigationProperty Name="Players" Relationship="Self.FK__Player__AgentId__5EBF139D" FromRole="Agent" ToRole="Player" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Games" Type="Int32" />
+    <Property Name="Goals" Type="Int32" />
+    <Property Name="Assists" Type="Int32" />
+    <Property Name="CleanSheets" Type="Int32" />
+    <Property Name="PlayStyleId" Type="Int32" />
+    <Property Name="AgentId" Type="Int32" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Salary" Type="Int32" />
+    <Property Name="PlayerPrice" Type="Int32" />
+    <Property Name="IsInjured" Type="Boolean" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK__Player__AgentId__5EBF139D" FromRole="Player" ToRole="Agent" />
+    <NavigationProperty Name="PlayStyle" Relationship="Self.FK__Player__PlayStyl__5FB337D6" FromRole="Player" ToRole="PlayStyle" />
+  </EntityType>
+  <EntityType Name="PlayStyle">
+    <Key>
+      <PropertyRef Name="PlayStyleId" />
+    </Key>
+    <Property Name="PlayStyleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StyleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Players" Relationship="Self.FK__Player__PlayStyl__5FB337D6" FromRole="PlayStyle" ToRole="Player" />
+  </EntityType>
+  <Association Name="FK__Player__AgentId__5EBF139D">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="AgentId" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="AgentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Player__PlayStyl__5FB337D6">
+    <End Role="PlayStyle" Type="Self.PlayStyle" Multiplicity="0..1" />
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayStyle">
+        <PropertyRef Name="PlayStyleId" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="PlayStyleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PlayerMarketEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Agents" EntityType="Self.Agent" />
+    <EntitySet Name="Players" EntityType="Self.Player" />
+    <EntitySet Name="PlayStyles" EntityType="Self.PlayStyle" />
+    <AssociationSet Name="FK__Player__AgentId__5EBF139D" Association="Self.FK__Player__AgentId__5EBF139D">
+      <End Role="Agent" EntitySet="Agents" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Player__PlayStyl__5FB337D6" Association="Self.FK__Player__PlayStyl__5FB337D6">
+      <End Role="PlayStyle" EntitySet="PlayStyles" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

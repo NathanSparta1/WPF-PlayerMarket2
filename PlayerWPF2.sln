@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerWPF2", "PlayerWPF2\PlayerWPF2.csproj", "{36D832FB-E3D6-4355-BD88-39056DAC43EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36D832FB-E3D6-4355-BD88-39056DAC43EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36D832FB-E3D6-4355-BD88-39056DAC43EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36D832FB-E3D6-4355-BD88-39056DAC43EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36D832FB-E3D6-4355-BD88-39056DAC43EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBB5045F-D0FE-4685-8E41-CCC7A4C30BA6}
+	EndGlobalSection
+EndGlobal

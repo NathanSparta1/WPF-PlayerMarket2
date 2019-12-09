@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PlayerMarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="AgentId" />
+    </Key>
+    <Property Name="AgentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AgentName" Type="varchar" MaxLength="50" />
+    <Property Name="Rating" Type="int" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerName" Type="varchar" MaxLength="50" />
+    <Property Name="Games" Type="int" />
+    <Property Name="Goals" Type="int" />
+    <Property Name="Assists" Type="int" />
+    <Property Name="CleanSheets" Type="int" />
+    <Property Name="PlayStyleId" Type="int" />
+    <Property Name="AgentId" Type="int" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Salary" Type="int" />
+    <Property Name="PlayerPrice" Type="int" />
+    <Property Name="IsInjured" Type="bit" />
+  </EntityType>
+  <EntityType Name="PlayStyle">
+    <Key>
+      <PropertyRef Name="PlayStyleId" />
+    </Key>
+    <Property Name="PlayStyleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StyleName" Type="varchar" MaxLength="50" />
+    <Property Name="Position" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Player__AgentId__5EBF139D">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="AgentId" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="AgentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Player__PlayStyl__5FB337D6">
+    <End Role="PlayStyle" Type="Self.PlayStyle" Multiplicity="0..1" />
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayStyle">
+        <PropertyRef Name="PlayStyleId" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="PlayStyleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PlayerMarketModelStoreContainer">
+    <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlayStyle" EntityType="Self.PlayStyle" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Player__AgentId__5EBF139D" Association="Self.FK__Player__AgentId__5EBF139D">
+      <End Role="Agent" EntitySet="Agent" />
+      <End Role="Player" EntitySet="Player" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Player__PlayStyl__5FB337D6" Association="Self.FK__Player__PlayStyl__5FB337D6">
+      <End Role="PlayStyle" EntitySet="PlayStyle" />
+      <End Role="Player" EntitySet="Player" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
